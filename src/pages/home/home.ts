@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AdMobPro } from '@ionic-native/admob-pro';
 import { Platform } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
 })
 export class HomePage {
-    constructor(public navCtrl: NavController, platform: Platform, private admob: AdMobPro) {
+    constructor(public navCtrl: NavController, platform: Platform, private admob: AdMobPro, public alertCtrl: AlertController) {
         platform.ready().then(() => {
             var admobid = {
                 banner: 'ca-app-pub-3940256099942544/6300978111',
@@ -35,5 +36,16 @@ export class HomePage {
             this.admob.showInterstitial();
         }
     }
+	
+	showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'New Friend!',
+      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+	
+	
 }
-
+ 
